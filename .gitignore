@@ -3,3 +3,5 @@
 *.idea
 *.mvn
 *.target
+*.\Spring-Boot-Project\.mvn\wrapper
+*.\WebApplication\.mvn\wrapper
