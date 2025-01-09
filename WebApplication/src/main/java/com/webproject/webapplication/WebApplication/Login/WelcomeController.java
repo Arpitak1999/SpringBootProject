@@ -21,16 +21,16 @@ public class WelcomeController {
 
     @RequestMapping(value="/" , method = RequestMethod.GET)
     public String goToWelcomePage(ModelMap model){
-        model.put("name", "Arpita");
+        model.put("name", "arpita");
         return "welcome";
     }
 
-    private String getLoggedinUser(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
-
-    }
-// video 67 and 68 do again
+//    private String getLoggedinUser(){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        return authentication.getName();
+//
+//    }
+// video 67 and 68
 //    @RequestMapping(value="login" , method = RequestMethod.POST)
 //    public String goWelcomePage(@RequestParam String name, @RequestParam String password, ModelMap model){
 //
