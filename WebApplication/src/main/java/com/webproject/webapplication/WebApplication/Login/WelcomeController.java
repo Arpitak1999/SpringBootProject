@@ -24,11 +24,10 @@ public class WelcomeController {
         model.put("name", "arpita");
         return "welcome";
     }
-
-//    private String getLoggedinUser(){
+//
+//    private String getLoggedinUsername(){
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        return authentication.getName();
-//
 //    }
 // video 67 and 68
 //    @RequestMapping(value="login" , method = RequestMethod.POST)

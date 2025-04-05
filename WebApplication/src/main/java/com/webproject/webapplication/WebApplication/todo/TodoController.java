@@ -17,21 +17,26 @@ import java.util.List;
 @Controller
 @SessionAttributes("name")
 public class TodoController {
-    private TodoService todoService;
+
 
     public TodoController(TodoService todoService) {
         super();
         this.todoService = todoService;
     }
+    private TodoService todoService;
 
     @RequestMapping("list-todos")
     public String listAllTodos(ModelMap model){
-        List<Todo> todos =todoService.findByUsername("arpita");
+        //String username = getLoggedInUsername(model);
+        String username = (String)model.get("name");
+        List<Todo> todos =todoService.findByUsername(username);
         model.addAttribute("todos", todos);
         return "listTodos";
     }
+
     @RequestMapping(value = "add-todos", method = RequestMethod.GET)
     public String showNewTodo(ModelMap model){
+        //String username = getLoggedInUsername(model);
         String username = (String)model.get("name");
         Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(0),false);
         model.put("todo",todo);
@@ -43,8 +48,8 @@ public class TodoController {
         if (result.hasErrors()){
             return "addTodo";
         }
-
         String username = (String)model.get("name");
+       // String username = getLoggedInUsername(model);
         todoService.addTodo(username, todo.getDescription(),todo.getDate(),false);
         return "redirect:list-todos";
     }
@@ -65,15 +70,15 @@ public class TodoController {
         if (result.hasErrors()){
             return "addTodo";
         }
-
         String username = (String)model.get("name");
+ //       String username = getLoggedInUsername(model);
         todo.setUsername(username);
         todoService.updateTodo(todo);
         return "redirect:list-todos";
     }
-    private String getLoggedInUser(ModelMap model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
 
-    }
+//    private String getLoggedInUsername(ModelMap model) {
+//            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        return authentication.getName();
+//    }
 }
